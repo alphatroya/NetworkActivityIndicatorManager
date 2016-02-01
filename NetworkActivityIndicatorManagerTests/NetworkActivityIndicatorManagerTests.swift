@@ -14,7 +14,7 @@ class ApplicationMock: ApplicationProtocol {
     var networkActivityIndicatorVisible: Bool = false
 }
 
-class RGBTests: QuickSpec {
+class NetworkActivityIndicatorManagerTests: QuickSpec {
     override func spec() {
         var indicatorManager: NetworkActivityIndicatorManager!
         var application: ApplicationProtocol!
@@ -28,7 +28,7 @@ class RGBTests: QuickSpec {
             indicatorManager = nil
             application = nil
         }
-        describe("it") {
+        describe("manager") {
             it("should show activity indicator after adding activity") {
                 indicatorManager.addActivity()
                 expect(application.networkActivityIndicatorVisible).to(beTrue())
@@ -37,6 +37,27 @@ class RGBTests: QuickSpec {
                 indicatorManager.addActivity()
                 indicatorManager.removeActivity()
                 expect(application.networkActivityIndicatorVisible).to(beFalse())
+            }
+            it("should add activity if adding of activities greater that removing") {
+                indicatorManager.addActivity()
+                indicatorManager.addActivity()
+                indicatorManager.addActivity()
+                indicatorManager.removeActivity()
+                expect(application.networkActivityIndicatorVisible).to(beTrue())
+            }
+            it("should convey statuses between instances") {
+                let indicatorManager2 = NetworkActivityIndicatorManager(withApplication: application)
+                indicatorManager2.addActivity()
+                indicatorManager.addActivity()
+                indicatorManager2.removeActivity()
+                expect(application.networkActivityIndicatorVisible).to(beTrue())
+            }
+            it("should not set counter to negative values") {
+                indicatorManager.removeActivity()
+                indicatorManager.removeActivity()
+                indicatorManager.removeActivity()
+                indicatorManager.addActivity()
+                expect(application.networkActivityIndicatorVisible).to(beTrue())
             }
         }
 

@@ -31,12 +31,12 @@ public class NetworkActivityIndicatorManager {
             application.networkActivityIndicatorVisible = true
         }
 
-        self.dynamicType.activitiesCount++
+        self.dynamicType.activitiesCount += 1
     }
 
     public func removeActivity() {
         if self.dynamicType.activitiesCount > 0 {
-            self.dynamicType.activitiesCount--
+            self.dynamicType.activitiesCount -= 1
 
             if self.dynamicType.activitiesCount == 0 {
                 application.networkActivityIndicatorVisible = false

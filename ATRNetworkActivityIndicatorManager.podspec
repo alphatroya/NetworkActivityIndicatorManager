@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 	s.name         		= "ATRNetworkActivityIndicatorManager"
-	s.version      		= "1.0"
+	s.version      		= "1.1"
 	s.summary      		= "Simple UIApplication's NetworkActivityIndicator counter"
 	s.description  		= "Simple UIApplication's NetworkActivityIndicator counter (https://github.com/alphatroya/NetworkActivityIndicatorManager)"
 	s.homepage     		= "https://github.com/alphatroya/NetworkActivityIndicatorManager"

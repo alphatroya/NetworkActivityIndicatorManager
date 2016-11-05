@@ -16,9 +16,9 @@ public protocol ApplicationProtocol {
     var networkActivityIndicatorVisible: Bool { get set }
 }
 
-public class NetworkActivityIndicatorManager {
+open class NetworkActivityIndicatorManager {
 
-    private static var activitiesCount = 0
+    fileprivate static var activitiesCount = 0
 
     var application: ApplicationProtocol
 
@@ -26,26 +26,26 @@ public class NetworkActivityIndicatorManager {
         self.application = application
     }
 
-    public func addActivity() {
-        if self.dynamicType.activitiesCount == 0 {
+    open func addActivity() {
+        if type(of: self).activitiesCount == 0 {
             application.networkActivityIndicatorVisible = true
         }
 
-        self.dynamicType.activitiesCount += 1
+        type(of: self).activitiesCount += 1
     }
 
-    public func removeActivity() {
-        if self.dynamicType.activitiesCount > 0 {
-            self.dynamicType.activitiesCount -= 1
+    open func removeActivity() {
+        if type(of: self).activitiesCount > 0 {
+            type(of: self).activitiesCount -= 1
 
-            if self.dynamicType.activitiesCount == 0 {
+            if type(of: self).activitiesCount == 0 {
                 application.networkActivityIndicatorVisible = false
             }
         }
     }
 
     func resetActivityCount() {
-        self.dynamicType.activitiesCount = 0
+        type(of: self).activitiesCount = 0
         application.networkActivityIndicatorVisible = false
     }
 }

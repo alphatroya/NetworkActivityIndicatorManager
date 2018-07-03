@@ -204,10 +204,10 @@
 		D4ACC0CD1C5E2E3900396328 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4ACC0D61C5E2E3900396328 /* Nimble.framework */,
-				D4ACC0D81C5E2E3900396328 /* NimbleTests.xctest */,
 				D4ACC0DA1C5E2E3900396328 /* Nimble.framework */,
 				D4ACC0DC1C5E2E3900396328 /* NimbleTests.xctest */,
+				D4ACC0D61C5E2E3900396328 /* Nimble.framework */,
+				D4ACC0D81C5E2E3900396328 /* NimbleTests.xctest */,
 				D4ACC0DE1C5E2E3900396328 /* Nimble.framework */,
 				D4ACC0E01C5E2E3900396328 /* NimbleTests.xctest */,
 			);
@@ -390,14 +390,14 @@
 		D4ACC0F01C5E2E3F00396328 /* Quick-OSXTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Quick-OSXTests.xctest";
+			path = "Quick-macOSTests.xctest";
 			remoteRef = D4ACC0EF1C5E2E3F00396328 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D4ACC0F21C5E2E3F00396328 /* QuickFocused-OSXTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "QuickFocused-OSXTests.xctest";
+			path = "QuickFocused-macOSTests.xctest";
 			remoteRef = D4ACC0F11C5E2E3F00396328 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -591,6 +591,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alphatroya.NetworkActivityIndicatorManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -611,6 +612,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alphatroya.NetworkActivityIndicatorManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

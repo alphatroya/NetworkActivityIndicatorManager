@@ -6,60 +6,62 @@
 //  Copyright © 2016 Alexey Korolev. All rights reserved.
 //
 
-import Quick
-import Nimble
+import XCTest
 @testable import NetworkActivityIndicatorManager
 
 class ApplicationMock: ApplicationProtocol {
-    var networkActivityIndicatorVisible: Bool = false
+    var isNetworkActivityIndicatorVisible: Bool = false
 }
 
-class NetworkActivityIndicatorManagerTests: QuickSpec {
-    override func spec() {
-        var indicatorManager: NetworkActivityIndicatorManager!
-        var application: ApplicationProtocol!
+final class NetworkActivityIndicatorManagerTests: XCTestCase {
+    var indicatorManager: NetworkActivityIndicatorManager!
+    var application: ApplicationProtocol!
 
-        beforeEach {
-            application = ApplicationMock()
-            indicatorManager = NetworkActivityIndicatorManager(withApplication: application)
-        }
-        afterEach {
-            indicatorManager.resetActivityCount()
-            indicatorManager = nil
-            application = nil
-        }
-        describe("manager") {
-            it("should show activity indicator after adding activity") {
-                indicatorManager.addActivity()
-                expect(application.networkActivityIndicatorVisible).to(beTrue())
-            }
-            it("should hide activity indicator after adding and removing activity") {
-                indicatorManager.addActivity()
-                indicatorManager.removeActivity()
-                expect(application.networkActivityIndicatorVisible).to(beFalse())
-            }
-            it("should add activity if adding of activities greater that removing") {
-                indicatorManager.addActivity()
-                indicatorManager.addActivity()
-                indicatorManager.addActivity()
-                indicatorManager.removeActivity()
-                expect(application.networkActivityIndicatorVisible).to(beTrue())
-            }
-            it("should convey statuses between instances") {
-                let indicatorManager2 = NetworkActivityIndicatorManager(withApplication: application)
-                indicatorManager2.addActivity()
-                indicatorManager.addActivity()
-                indicatorManager2.removeActivity()
-                expect(application.networkActivityIndicatorVisible).to(beTrue())
-            }
-            it("should not set counter to negative values") {
-                indicatorManager.removeActivity()
-                indicatorManager.removeActivity()
-                indicatorManager.removeActivity()
-                indicatorManager.addActivity()
-                expect(application.networkActivityIndicatorVisible).to(beTrue())
-            }
-        }
+    override func setUp() {
+        super.setUp()
+        application = ApplicationMock()
+        indicatorManager = NetworkActivityIndicatorManager(withApplication: application)
+    }
 
+    override func tearDown() {
+        indicatorManager.resetActivityCount()
+        indicatorManager = nil
+        application = nil
+        super.tearDown()
+    }
+
+    func testManagerShouldShowActivityIndicatorAfterAddingActivity() {
+        indicatorManager.addActivity()
+        XCTAssertTrue(application.isNetworkActivityIndicatorVisible)
+    }
+
+    func testManagerShouldHideActivityIndicatorAfterAddingAndRemobingActivity() {
+        indicatorManager.addActivity()
+        indicatorManager.removeActivity()
+        XCTAssertFalse(application.isNetworkActivityIndicatorVisible)
+    }
+
+    func testManagerShouldAddActivityIfCountOfAddictivesGreaterThatRemoving() {
+        indicatorManager.addActivity()
+        indicatorManager.addActivity()
+        indicatorManager.addActivity()
+        indicatorManager.removeActivity()
+        XCTAssertTrue(application.isNetworkActivityIndicatorVisible)
+    }
+
+    func testManagerShouldConveyStatusesBetweenInstances() {
+        let indicatorManager2 = NetworkActivityIndicatorManager(withApplication: application)
+        indicatorManager2.addActivity()
+        indicatorManager.addActivity()
+        indicatorManager2.removeActivity()
+        XCTAssertTrue(application.isNetworkActivityIndicatorVisible)
+    }
+
+    func testManagerShouldNotSetCounterToNegativeValues() {
+        indicatorManager.removeActivity()
+        indicatorManager.removeActivity()
+        indicatorManager.removeActivity()
+        indicatorManager.addActivity()
+        XCTAssertTrue(application.isNetworkActivityIndicatorVisible)
     }
 }

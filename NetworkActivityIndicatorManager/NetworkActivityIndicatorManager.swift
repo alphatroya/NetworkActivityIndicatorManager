@@ -13,7 +13,7 @@ extension UIApplication: ApplicationProtocol {
 }
 
 public protocol ApplicationProtocol {
-    var networkActivityIndicatorVisible: Bool { get set }
+    var isNetworkActivityIndicatorVisible: Bool { get set }
 }
 
 open class NetworkActivityIndicatorManager {
@@ -28,7 +28,7 @@ open class NetworkActivityIndicatorManager {
 
     open func addActivity() {
         if type(of: self).activitiesCount == 0 {
-            application.networkActivityIndicatorVisible = true
+            application.isNetworkActivityIndicatorVisible = true
         }
 
         type(of: self).activitiesCount += 1
@@ -39,13 +39,13 @@ open class NetworkActivityIndicatorManager {
             type(of: self).activitiesCount -= 1
 
             if type(of: self).activitiesCount == 0 {
-                application.networkActivityIndicatorVisible = false
+                application.isNetworkActivityIndicatorVisible = false
             }
         }
     }
 
     func resetActivityCount() {
         type(of: self).activitiesCount = 0
-        application.networkActivityIndicatorVisible = false
+        application.isNetworkActivityIndicatorVisible = false
     }
 }

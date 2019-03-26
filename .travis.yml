@@ -1,9 +1,8 @@
 language: objective-c
-osx_image: xcode8
-xcode_workspace: NetworkActivityIndicatorManager.xcworkspace
+osx_image: xcode10.2
+xcode_project: NetworkActivityIndicatorManager.xcodeproj
 xcode_scheme: NetworkActivityIndicatorManager
 xcode_sdk: iphonesimulator9.3
 script:
     - gem install xcpretty
-    - carthage bootstrap --platform iOS --use-submodules
-    - xcodebuild -workspace NetworkActivityIndicatorManager.xcworkspace -scheme NetworkActivityIndicatorManager -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' ONLY_ACTIVE_ARCH=NO clean test | xcpretty
+    - xcodebuild -workspace NetworkActivityIndicatorManager.xcodeproj -scheme NetworkActivityIndicatorManager -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' ONLY_ACTIVE_ARCH=NO clean test | xcpretty

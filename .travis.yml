@@ -5,4 +5,4 @@ xcode_scheme: NetworkActivityIndicatorManager
 xcode_sdk: iphonesimulator9.3
 script:
     - gem install xcpretty
-    - xcodebuild -project NetworkActivityIndicatorManager.xcodeproj -scheme NetworkActivityIndicatorManager -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' ONLY_ACTIVE_ARCH=NO clean test | xcpretty
+    - xcodebuild -project NetworkActivityIndicatorManager.xcodeproj -scheme NetworkActivityIndicatorManager -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=12.2' clean test | xcpretty

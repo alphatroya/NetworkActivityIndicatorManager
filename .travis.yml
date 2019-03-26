@@ -1,9 +1,21 @@
 language: objective-c
-osx_image: xcode8
-xcode_workspace: NetworkActivityIndicatorManager.xcworkspace
+osx_image: xcode10.2
+xcode_project: NetworkActivityIndicatorManager.xcodeproj
 xcode_scheme: NetworkActivityIndicatorManager
 xcode_sdk: iphonesimulator9.3
 script:
-    - gem install xcpretty
-    - carthage bootstrap --platform iOS --use-submodules
-    - xcodebuild -workspace NetworkActivityIndicatorManager.xcworkspace -scheme NetworkActivityIndicatorManager -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' ONLY_ACTIVE_ARCH=NO clean test | xcpretty
+- gem install xcpretty
+- xcodebuild -project NetworkActivityIndicatorManager.xcodeproj -scheme NetworkActivityIndicatorManager
+  -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=12.2'
+  clean test | xcpretty
+before_deploy:
+  - carthage build --no-skip-current --platform iOS
+  - carthage archive NetworkActivityIndicatorManager
+deploy:
+  provider: releases
+  api_key:
+    secure: c4dE2poVr2eSLiiNpz7VKAg7HbBoKKYeBcB/kTeLovLB1o98img58ZxqOm7aYKlxqhMbY+NgS3ADaj6/kHBJLgojzZmjyV5TMOkRwkmAGZ/Oqm33INU7e9gFlHhmn/AgpINnsmdpgVgGW8tQ5dcsusFfwgSHuExEyko0ANXC2YRktAKo+iqA8NEqYYQTDoQsVvbqysrNLexBxGWmNPJpZ9mj7RMRPoMB95YYeIKpq4keqkeNSNqmnrUD/CDMWoT1QufCkSAYvBjDEVuukxZFPSAqzo5/g2JUP6MQh02XD422Ttd0IbQ6FgQV8oYAUV1sRvR1b+gL9smAb+SejMrsQaR6IFQyVUqbKZam+PLkqZgzWvam/7alKy+Fr8bHbr6bD5N+NkwMmF7OgwHkXXnf2hN0jauXyNlICoDChHxhfIcISNv7ZDJGmQStHmA0ow/3m/wg4FCVpLsFmi8c9Ylt1iBHQ7q5Nq+wqkg0l6/Q/dcA67I1J1Wm+tW5EHccFfqeBxVuINHsspxMihsOZVdcW/7A1P6jFHgNhAEEZLtYtYfVpL0gpKtbsdgepx/uXUVPoVpzVnf9vzMAtG+xLuJOzWoVxcEdDgp0rEJ565YujibUbPnlucpIzKEV14QGz0C2mrYYs2hlNUrvetoSHNaWfBQIarsTaked1YgyxPs6CCk=
+  file: NetworkActivityIndicatorManager.framework.zip
+  skip_cleanup: true
+  on:
+    tags: true

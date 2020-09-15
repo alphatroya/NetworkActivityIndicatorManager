@@ -10,14 +10,11 @@ Simple UIApplication's NetworkActivityIndicator counter. Use `addActivity` metho
 
 ## Installation
 
-### Carthage
-To integrate manager into your Xcode project using Carthage, specify it in your Cartfile:
+### Swift Package Manager (required Xcode 11)
 
-```ogdl
-github "alphatroya/NetworkActivityIndicatorManager"
-```
-
-Run `carthage update` to build the framework and drag the built NetworkActivityIndicatorManager.framework into your Xcode project.
+1. Select File > Swift Packages > Add Package Dependency. Enter `https://github.com/alphatroya/NetworkActivityIndicatorManager` in the "Choose Package Repository" dialog.
+2. In the next page, specify the version resolving rule as "Up to Next Major" with "2.0" as its earliest version.
+3. After Xcode checking out the source and resolving the version, you can choose the "NetworkActivityIndicatorManager" library and add it to your app target.
 
 ## Author
 Alexey Korolev, alphatroya@gmail.com

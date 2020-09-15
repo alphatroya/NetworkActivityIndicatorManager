@@ -1,0 +1,17 @@
+#!usr/bin/ruby
+
+fastlane_version '2.0'
+
+default_platform :ios
+
+platform :ios do
+
+  desc 'Perform test checks'
+  lane :test do
+    spm(
+      command: "generate-xcodeproj",
+    )
+    scan
+  end
+
+end

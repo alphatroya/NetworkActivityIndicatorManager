@@ -1,7 +1,5 @@
 # NetworkActivityIndicatorManager
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-
 ## Usage
 
 Simple UIApplication's NetworkActivityIndicator counter. Use `addActivity` method before request for increase counter and show application network activity indicator, after finished request decrease counter by method `removeActivity`. If counter reach 0 network activity indicator will be hidden.

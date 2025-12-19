@@ -12,9 +12,6 @@ jobs:
     - name: Install xcbeautify
       run: brew install xcbeautify
 
-    - name: Generate Xcode project
-      run: swift package generate-xcodeproj
-
     - name: Build and test
       run: |
         set -o pipefail

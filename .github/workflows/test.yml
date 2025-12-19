@@ -7,9 +7,19 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
 
-    - uses: maierj/fastlane-action@v1.4.0
-      with:
-        lane: 'test'
+    - name: Install xcbeautify
+      run: brew install xcbeautify
+
+    - name: Generate Xcode project
+      run: swift package generate-xcodeproj
+
+    - name: Build and test
+      run: |
+        set -o pipefail
+        xcodebuild test \
+          -scheme NetworkActivityIndicatorManager \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+          | xcbeautify
 

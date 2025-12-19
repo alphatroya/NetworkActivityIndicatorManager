@@ -1,8 +1,6 @@
 # NetworkActivityIndicatorManager
 
-[![Build Status](https://travis-ci.org/alphatroya/NetworkActivityIndicatorManager.svg?branch=master)](https://travis-ci.org/alphatroya/NetworkActivityIndicatorManager)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![codebeat badge](https://codebeat.co/badges/b9f64cba-baea-4ac6-ac9c-eedf093a72fe)](https://codebeat.co/projects/github-com-alphatroya-networkactivityindicatormanager)
 
 ## Usage
 
